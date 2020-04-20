@@ -27,6 +27,14 @@
         android:layout_weight="1"
         android:text="@string/show" >
     </TextView>
+    <TextView
+        android:id="@+id/tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_weight="1"
+        android:text="@string/show1" >
+    </TextView>
 
     <TextView
         android:id="@+id/id_tv_Avg_Pixel_Values"
