@@ -96,6 +96,7 @@ public class HeartRateActivity extends AppCompatActivity{
     //开始时间
     private static long startTime = 0;
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
