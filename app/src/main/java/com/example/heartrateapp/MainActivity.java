@@ -12,8 +12,10 @@ import android.view.View;
 
 import android.widget.RadioGroup;
 
-public class MainActivity extends AppCompatActivity {
 
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
 
     private RadioGroup mTabRadioGroup;
     private SparseArray<Fragment> mFragmentSparseArray;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                 "注意： 该功能测得的数据仅供参考，因设备、灯光等环境因素影响与实际心率略有偏差。" +
                 "若发现身体不适建议及时就医！"));
         mFragmentSparseArray.append(R.id.record_tab, BlankFragment.newInstance("记录"));
-        mFragmentSparseArray.append(R.id.contact_tab, BlankFragment.newInstance("丁香园——心血管"));
+        mFragmentSparseArray.append(R.id.contact_tab, WebFragment.newInstance("dxy", "heart"));
         mFragmentSparseArray.append(R.id.settings_tab, BlankFragment.newInstance("设置"));
 
 

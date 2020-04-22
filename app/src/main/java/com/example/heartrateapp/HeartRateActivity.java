@@ -2,6 +2,7 @@ package com.example.heartrateapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -29,12 +30,14 @@ import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HeartRateActivity extends AppCompatActivity{
-
+    private static String TAG = "HeartRateActivity";
     //曲线
     private Timer timer = new Timer();
     //Timer任务，与Timer配套使用
@@ -96,7 +99,7 @@ public class HeartRateActivity extends AppCompatActivity{
     //开始时间
     private static long startTime = 0;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,6 +183,15 @@ public class HeartRateActivity extends AppCompatActivity{
         //当结束程序时关掉Timer
         timer.cancel();
         super.onDestroy();
+        Log.d(TAG, "onDestroy: "+mTV_Heart_Rate.getText().toString());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");// HH:mm:ss获取当前时间
+        Date date = new Date(System.currentTimeMillis());
+
+        Intent intent = new Intent(HeartRateActivity.this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("data", simpleDateFormat.format(date) + "心率：" + mTV_Heart_Rate.getText().toString());
+        intent.putExtras(bundle);
+        startActivity(intent);
     };
 
     /**
