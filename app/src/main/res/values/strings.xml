@@ -13,4 +13,9 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="instructions_content">"本APP可仅通过手机摄像头及闪光灯达到测量实时的人体心率数据。
+
+
+
+        注意： 该功能测得的数据仅供参考，因设备、灯光等环境因素影响与实际心率略有偏差。若发现身体不适建议及时就医！"</string>
 </resources>
