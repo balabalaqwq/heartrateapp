@@ -1,9 +1,11 @@
 package com.example.heartrateapp;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.hardware.Camera;
@@ -38,6 +40,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HeartRateActivity extends AppCompatActivity{
     private static String TAG = "HeartRateActivity";
+    private MyDatabaseHelper dbHelper;
+
     //曲线
     private Timer timer = new Timer();
     //Timer任务，与Timer配套使用
@@ -181,11 +185,35 @@ public class HeartRateActivity extends AppCompatActivity{
     @Override
     public void onDestroy() {
         //当结束程序时关掉Timer
-        timer.cancel();
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: "+mTV_Heart_Rate.getText().toString());
+        String status = "";
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");// HH:mm:ss获取当前时间
         Date date = new Date(System.currentTimeMillis());
+
+        //用SQLite将保存测得的数据
+        dbHelper = new MyDatabaseHelper(this, "HeartRateRecords.db", null, 1);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("time", simpleDateFormat.format(date));
+        int heart_rate = Integer.valueOf(mTV_Heart_Rate.getText().toString()).intValue();//String转int未进行异常处理
+        values.put("heartrate", heart_rate);
+        if ( 100 < heart_rate && heart_rate < 160)   {
+            status = "心动过速";
+        }   else if (45 < heart_rate && heart_rate < 60)    {
+            status = "心动过缓";
+        }   else if ( 59 < heart_rate && heart_rate < 101){
+            status = "正常";
+        }   else {
+            status = "数据异常";
+        }
+        values.put("status", status);
+        db.insert("Records", null, values);
+        values.clear();
+
+        Log.d(TAG, "onDestroy: "+mTV_Heart_Rate.getText().toString());
+
+        timer.cancel();
+        super.onDestroy();
 
         Intent intent = new Intent(HeartRateActivity.this, MainActivity.class);
         Bundle bundle = new Bundle();
@@ -425,11 +453,14 @@ public class HeartRateActivity extends AppCompatActivity{
                     }
                 }
                 int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
-                mTV_Heart_Rate.setText("您的心率是"+String.valueOf(beatsAvg) +
-                        "  值:" + String.valueOf(beatsArray.length) +
-                        "    " + String.valueOf(beatsIndex) +
-                        "    " + String.valueOf(beatsArrayAvg) +
-                        "    " + String.valueOf(beatsArrayCnt));
+
+                mTV_Heart_Rate.setText(String.valueOf(beatsAvg));
+
+//                mTV_Heart_Rate.setText("您的心率是"+String.valueOf(beatsAvg) +
+//                        "  值:" + String.valueOf(beatsArray.length) +
+//                        "    " + String.valueOf(beatsIndex) +
+//                        "    " + String.valueOf(beatsArrayAvg) +
+//                        "    " + String.valueOf(beatsArrayCnt));
                 //获取系统时间（ms）
                 startTime = System.currentTimeMillis();
                 beats = 0;
