@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 "像头及闪光灯达到测量实时的人体心率数据。" +
                 "注意： 该功能测得的数据仅供参考，因设备、灯光等环境因素影响与实际心率略有偏差。" +
                 "若发现身体不适建议及时就医！"));
-        mFragmentSparseArray.append(R.id.record_tab, BlankFragment.newInstance("记录"));
+        mFragmentSparseArray.append(R.id.record_tab, ListFragment.newInstance("心率","记录"));
         mFragmentSparseArray.append(R.id.contact_tab, WebFragment.newInstance("dxy", "heart"));
         mFragmentSparseArray.append(R.id.settings_tab, BlankFragment.newInstance("设置"));
 
@@ -53,17 +53,20 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.today_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         mFragmentSparseArray.get(checkedId)).commit();
+                        break;
                     case R.id.record_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 mFragmentSparseArray.get(checkedId)).commit();
+                        break;
                     case R.id.contact_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 mFragmentSparseArray.get(checkedId)).commit();
-
+                        break;
 
                     case R.id.settings_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 mFragmentSparseArray.get(checkedId)).commit();
+                        break;
                     default:
 
                 }
