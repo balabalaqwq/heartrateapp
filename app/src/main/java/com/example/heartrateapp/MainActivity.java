@@ -68,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
                                 mFragmentSparseArray.get(checkedId)).commit();
                         break;
                     default:
+                        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
+                                mFragmentSparseArray.get(R.id.today_tab)).commit();
+                        break;
 
                 }
 
@@ -75,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // 默认显示第一个
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,
-                mFragmentSparseArray.get(R.id.today_tab)).commit();
+
 
         findViewById(R.id.test_now).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -202,7 +202,7 @@ public class HeartRateActivity extends AppCompatActivity{
         }   else if (45 < heart_rate && heart_rate < 60)    {
             status = "心动过缓";
         }   else if ( 59 < heart_rate && heart_rate < 101){
-            status = "正常";
+            status = "    正常";
         }   else {
             status = "数据异常";
         }
@@ -214,12 +214,6 @@ public class HeartRateActivity extends AppCompatActivity{
 
         timer.cancel();
         super.onDestroy();
-
-        Intent intent = new Intent(HeartRateActivity.this, MainActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("data", simpleDateFormat.format(date) + "心率：" + mTV_Heart_Rate.getText().toString());
-        intent.putExtras(bundle);
-        startActivity(intent);
     };
 
     /**
