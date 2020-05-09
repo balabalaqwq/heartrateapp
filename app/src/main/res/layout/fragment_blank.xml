@@ -4,13 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BlankFragment">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <TextView
-        android:id="@+id/content_tv"
+        android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="24sp"
+        android:textSize="25sp"
+        android:textAllCaps="false"
         android:textColor="@android:color/black"
-        android:text="hello_blank_fragment" />
+        android:text="        本APP检测心率功能可以仅通过手机摄像头及闪光灯达到测量实时的人体心率数据。"
+     />
+
+</LinearLayout>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    >
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:text="声明： 因设备、灯光等环境因素影响与实际心率会略有偏差，该功能测得的数据仅供参考。"
+        />
+    <TextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_red_light"
+        android:text="注意：若发现身体不适建议及时就医！"
+        />
+</LinearLayout>
+
+
+
+
+
 </FrameLayout>

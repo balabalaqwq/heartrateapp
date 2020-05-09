@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/appPermissionManagement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开应用权限设置"/>
+
+        <Button
+            android:id="@+id/starService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="启动通知"/>
+
+        <Button
+            android:id="@+id/stopService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="关闭通知"/>
+
+    </LinearLayout>
+
+</FrameLayout>

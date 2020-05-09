@@ -1,58 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBar" >
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="@color/colorPrimary"-->
+<!--            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+<!--            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />-->
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tabs_rg" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <RadioGroup
-        android:id="@+id/tabs_rg"
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="#dcdcdc"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
 
-        <RadioButton
-            android:id="@+id/today_tab"
-            style="@style/Custom.TabRadioButton"
-            android:checked="true"
-            android:drawableTop="@drawable/tab_sign_selector"
-            android:text="简介" />
+        <nl.joery.animatedbottombar.AnimatedBottomBar
+            android:id="@+id/abbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            app:abb_selectedTabType="text"
+            app:abb_indicatorAppearance="round"
+            app:abb_indicatorMargin="16dp"
+            app:abb_indicatorHeight="4dp"
+            app:abb_tabs="@menu/menu"
+            app:abb_selectedIndex="0"
+            app:abb_indicatorLocation="bottom"/>
+    </LinearLayout>
 
-        <RadioButton
-            android:id="@+id/record_tab"
-            style="@style/Custom.TabRadioButton"
-            android:drawableTop="@drawable/tab_record_selector"
-            android:text="记录" />
-
-        <View style="@style/Custom.TabRadioButton" />
-
-        <RadioButton
-            android:id="@+id/contact_tab"
-            style="@style/Custom.TabRadioButton"
-            android:drawableTop="@drawable/tab_contact_selector"
-            android:text="资讯" />
-
-        <RadioButton
-            android:id="@+id/settings_tab"
-            style="@style/Custom.TabRadioButton"
-            android:drawableTop="@drawable/tab_setting_selector"
-            android:text="设置" />
-    </RadioGroup>
-
-    <ImageView
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/test_now"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        android:src="@mipmap/sign" />
-</RelativeLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="16dp"
+        android:src="@drawable/sign" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

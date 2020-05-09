@@ -43,14 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_login=findViewById(R.id.btn_login);
         et_user_name=findViewById(R.id.et_user_name);
         et_psw=findViewById(R.id.et_psw);
-        //返回键的点击事件
-        tv_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //登录界面销毁
-                LoginActivity.this.finish();
-            }
-        });
+
+
         //立即注册控件的点击事件
         tv_register.setOnClickListener(new View.OnClickListener() {
             @Override

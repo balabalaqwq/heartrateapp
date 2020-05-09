@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Introduction_tab"
+        android:icon="@drawable/tabbar_sign_default"
+        android:title="index" />
+    <item
+        android:id="@+id/record_tab"
+        android:icon="@drawable/tabbar_record_default"
+        android:title="records" />
+    <item
+        android:id="@+id/test"
+        android:icon="@drawable/sign"
+        android:title="   " />
+    <item
+        android:id="@+id/news_tab"
+        android:icon="@drawable/tabbar_contact_default"
+        android:title="news" />
+    <item
+        android:id="@+id/settings_tab"
+        android:icon="@drawable/tabbar_settings_default"
+        android:title="settings" />
+</menu>

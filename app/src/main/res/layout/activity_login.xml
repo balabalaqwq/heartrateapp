@@ -7,7 +7,23 @@
     android:background="@drawable/login_bg"
     android:orientation="vertical">
     <!--标题栏-->
-    <include layout="@layout/main_title_bar"></include>
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent">
+        <!--一个是显示返回键，一个是显示标题框-->
+        <!--通过TextView来显示，id ： tv_back , tv_main_title -->
+        <TextView
+            android:id="@+id/tv_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"/>
+        <!--其中android:background="@drawable/go_back_selector"为点击回退键时，会变化效果，其实就是一个点击更换个图片而已。-->
+        <!--我们先用这种老方法，接下来以后的文章才做代码优化效果-->
+    </RelativeLayout>
     <!--显示头像，记得加入id iv_head -->
     <ImageView
         android:id="@+id/iv_head"
@@ -15,13 +31,13 @@
         android:layout_height="70dp"
         android:layout_marginTop="25dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/account_icon"/>
+        android:src="@drawable/app_icon"/>
     <!--输入框-->
     <EditText
         android:id="@+id/et_user_name"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_gravity="center_horizontal"
@@ -33,15 +49,16 @@
         android:singleLine="true"
         android:textColor="#000000"
         android:textColorHint="#a3a3a3"
-        android:textSize="14sp"/>
+        android:textSize="40sp"/>
     <!--输入框-->
     <EditText
         android:id="@+id/et_psw"
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
+        android:layout_marginTop="30dp"
         android:background="@color/pwd_bg_color"
         android:drawablePadding="10dp"
         android:paddingLeft="8dp"
@@ -51,39 +68,28 @@
         android:singleLine="true"
         android:textColor="#000000"
         android:textColorHint="#a3a3a3"
-        android:textSize="14sp"/>
+        android:textSize="40sp"/>
     <!--按钮-->
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/button_selector_color"
         android:text="登  录"
         android:textColor="@android:color/black"
-        android:textSize="18sp"/>
+        android:textSize="35sp"/>
     <!--显示tv register , find_psw -->
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:gravity="bottom"
+        android:layout_margin="15dp"
+        android:layout_gravity="bottom"
         android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_register"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:padding="8dp"
-            android:text="没有账号？立即注册"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
+
         <!--layout_weight="1" layout_width="0dp"实现均分效果-->
         <TextView
             android:id="@+id/tv_find_psw"
@@ -92,8 +98,18 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:padding="8dp"
-            android:text="找回密码?"
+            android:text=""
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
+        <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:text="没有账号？立即注册"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
     </LinearLayout>
 </LinearLayout>

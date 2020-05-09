@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class ListFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private boolean DELETE_CODE;
 
     private MyDatabaseHelper dbHelper;
     private List<HeartRate> recordsList = new ArrayList<>();
@@ -74,7 +77,6 @@ public class ListFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_list, container, false);
         //读出SQLite数据库数据
-
         dbHelper = new MyDatabaseHelper(getActivity(), "HeartRateRecords.db",
                 null, 1);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -91,14 +93,17 @@ public class ListFragment extends Fragment {
             }   while (cursor.moveToNext());
         }
         cursor.close();
-        final HeartRateAdapter adapter = new HeartRateAdapter(getActivity(), R.layout.records_item, recordsList);
+        final HeartRateAdapter adapter = new HeartRateAdapter(getActivity(), R.layout.records_item,
+                recordsList);
+        //显示到页面中
         final ListView listView = (ListView) rootView.findViewById(R.id.list_view);
         listView.setAdapter(adapter);
+
         //长按删除对应数据
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, final View view, int position, long id) {
                 final String data_time = recordsList.get(position).getTime();
                 //定义AlertDialog.Builder对象，当长按列表项的时候弹出确认删除对话框
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -108,13 +113,15 @@ public class ListFragment extends Fragment {
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        DELETE_CODE = true;
+                        Snackbar.make(view, "数据已删除. 请刷新页面", Snackbar.LENGTH_SHORT).show();
                         dbHelper = new MyDatabaseHelper(getActivity(), "HeartRateRecords.db",
                                 null, 1);
                         SQLiteDatabase db = dbHelper.getWritableDatabase();
-                        db.delete("Records", "time == ?", new String[]{data_time});
-
-                        adapter.notifyDataSetChanged();
+                        if (DELETE_CODE == true) {
+                            db.delete("Records", "time == ?", new String[]{data_time});
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 });
 
@@ -133,6 +140,7 @@ public class ListFragment extends Fragment {
                 return false;
             }
         });
+
 
         return rootView;
     }
