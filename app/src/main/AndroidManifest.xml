@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.heartrateapp">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -16,25 +18,25 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-
         android:usesCleartextTraffic="true">
-
-        <service android:name=".NotifyingService"
-            android:exported="true"
-            android:enabled="true">
-        </service>
-        <activity android:name=".LoginActivity">
+        <service
+            android:name=".NotifyingService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".HeartRateActivity">
-
-        </activity>
+        <activity android:name=".LoginActivity"
+            android:label="登录"></activity>
+        <activity android:name=".RegisterActivity"
+            android:label="注册"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".HeartRateActivity"></activity>
     </application>
 
 </manifest>

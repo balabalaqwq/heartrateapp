@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.heartrateapp.utils.MD5Utils;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
     private TextView tv_main_title;//标题
     private TextView tv_back;//返回按钮
     private Button btn_register;//注册按钮

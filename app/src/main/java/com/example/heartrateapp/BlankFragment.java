@@ -55,8 +55,8 @@ public class BlankFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
-        TextView contentTv = rootView.findViewById(R.id.content_tv);
-        contentTv.setText(mContentText);
+//        TextView contentTv = rootView.findViewById(R.id.content_tv);
+//        contentTv.setText(mContentText);
         return rootView;
     }
 

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import nl.joery.animatedbottombar.AnimatedBottomBar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private int tab;
     private AnimatedBottomBar bottomBar;
     private SparseArray<Fragment> mFragmentSparseArray;

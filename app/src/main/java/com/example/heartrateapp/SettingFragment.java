@@ -30,7 +30,9 @@ public class SettingFragment extends Fragment {
     private Button appPerMan;// 打开应用权限设置
     private Button notifyStart;// 启动通知服务
     private Button notifyStop;// 停止通知服务
+    private Button logOut;
     private Context context = getActivity();
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 
@@ -84,6 +86,8 @@ public class SettingFragment extends Fragment {
         notifyStart.setOnClickListener(mStartListener);
         notifyStop = (Button)rootView.findViewById(R.id.stopService);
         notifyStop.setOnClickListener(mStopListener);
+        logOut = (Button)rootView.findViewById(R.id.logOut);
+        logOut.setOnClickListener(mLogOutListener);
         return rootView;
     }
     /**
@@ -191,6 +195,15 @@ public class SettingFragment extends Fragment {
             // 停止Notification对应Service
             getActivity().stopService(new Intent(getActivity(),
                     NotifyingService.class));
+        }
+    };
+
+    private View.OnClickListener mLogOutListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            //通过广播 结束之前的活动，跳转到登录界面
+            Intent intent = new Intent("com.example.broadcastbestpractice.FORCE_OFFLINE");
+            getActivity().sendBroadcast(intent);
         }
     };
 }
